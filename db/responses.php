@@ -1,0 +1,2 @@
+SELECT * FROM `books` b where b.paper_type =  1 and tiraj > 1000 and (select count(0) from books_category bc where bc.book_id = b.id) > 3
+select * from (SELECT bc1.book_id b1_id, bc2.book_id b2_id, count(DISTINCT(bc1.category_id)) cat_count FROM books_category BC1, books_category bc2 where bc1.category_id = bc2.category_id and bc1.book_id != bc2.book_id group by concat(GREATEST(bc1.book_id,bc2.book_id),LEAST(bc1.book_id,bc2.book_id)) having count(DISTINCT(bc1.category_id)) >= 1) t;
